@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'lorem',
     loadChildren: () => import('./lorem/lorem.module').then( m => m.LoremPageModule)
   },
+  {
+    path: 'converter',
+    loadChildren: () => import('./converter/converter.module').then( m => m.ConverterPageModule)
+  },
 
 ];
 
