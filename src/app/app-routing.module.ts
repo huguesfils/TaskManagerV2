@@ -11,6 +11,11 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'lorem',
+    loadChildren: () => import('./lorem/lorem.module').then( m => m.LoremPageModule)
+  },
+
 ];
 
 @NgModule({
