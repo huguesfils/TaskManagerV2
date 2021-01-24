@@ -1,3 +1,4 @@
+import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,4 +13,10 @@ export class ConverterPage implements OnInit {
   ngOnInit() {
   }
 
+  switch(){
+  }
+
+  convert(){
+     console.log(document.getElementById("inputKilometers").value);
+  }
 }

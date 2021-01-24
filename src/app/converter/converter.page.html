@@ -1,9 +1,41 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text="Retour"></ion-back-button>
+    </ion-buttons>
     <ion-title>Converter</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+<div class= "flex">
+  <ion-card>
+    <ion-item lines="none" >
+      <ion-label> km/h : </ion-label>
+        <ion-input id="inputKilometers" type="number"></ion-input>
+    </ion-item>
+</ion-card>
+
+<ion-card >
+    <ion-item lines="none">
+      <ion-label>Miles/h : <span id="outputMiles"></span></ion-label>
+    </ion-item>
+</ion-card>
+
+<ion-button (click)="switch()" class="switchButton">
+  Inverser
+</ion-button>
+</div>
+
+<ion-button (click)="convert()" expand="block" class="convertButton">
+  Convertir
+</ion-button>
+
+<ion-card class= "resultat">
+  <ion-item lines="none" expand="block">
+    <ion-label> Le résultat est</ion-label>
+  </ion-item>
+</ion-card>
 
 </ion-content>
