@@ -13,14 +13,15 @@
   <ion-card>
     <ion-item lines="none" >
       <ion-label> km/h : </ion-label>
-        <ion-input id="inputKilometers" type="number"></ion-input>
+        <ion-input [(ngModel)]="inputKilometers" id="inputKmh" type="number"></ion-input>
     </ion-item>
 </ion-card>
 
-<ion-card >
-    <ion-item lines="none">
-      <ion-label>Miles/h : <span id="outputMiles"></span></ion-label>
-    </ion-item>
+<ion-card>
+  <ion-item lines="none" >
+    <ion-label> Mph : </ion-label>
+      <ion-input [(ngModel)]="inputMiles" id="inputMph" type="number"></ion-input>
+  </ion-item>
 </ion-card>
 
 <ion-button (click)="switch()" class="switchButton">
@@ -32,10 +33,10 @@
   Convertir
 </ion-button>
 
-<ion-card class= "resultat">
+<ion-label class= "resultat">
   <ion-item lines="none" expand="block">
-    <ion-label> Le résultat est</ion-label>
+    <ion-label>{{solution}}</ion-label>
   </ion-item>
-</ion-card>
+</ion-label>
 
 </ion-content>

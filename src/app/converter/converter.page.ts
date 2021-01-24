@@ -1,3 +1,4 @@
+import { isEmptyExpression } from '@angular/compiler';
 import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./converter.page.scss'],
 })
 export class ConverterPage implements OnInit {
+  inputKilometers: number
+  inputMiles: number
+  resultat: number
+  solution: String
 
   constructor() { }
 
@@ -17,6 +22,13 @@ export class ConverterPage implements OnInit {
   }
 
   convert(){
-     console.log(document.getElementById("inputKilometers").value);
+    if (this.inputKilometers === null) {
+    this.resultat = this.inputMiles*1.6
+    this.solution = "Le résultat est " + this.resultat + " Km/h."
+    } else {
+      this.resultat = this.inputKilometers/1.6
+      this.solution = "Le résultat est " + this.resultat + " miles/heures."
+    }
+     console.log(this.resultat);
   }
 }
