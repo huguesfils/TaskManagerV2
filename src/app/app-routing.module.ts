@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'converter',
     loadChildren: () => import('./converter/converter.module').then( m => m.ConverterPageModule)
   },
+  {
+    path: 'details',
+    loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
+  },
 
 ];
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { PopoverController } from '@ionic/angular';
+import { DetailsPage } from '../details/details.page';
 import {PopoverComponent} from '../popover/popover.component';
 
 @Component({
@@ -14,6 +15,8 @@ export class HomePage {
   description: string;
   addTask: boolean;
   tasks = [];
+
+  detailsPage = DetailsPage;
 
   constructor(public afDB: AngularFireDatabase, public popoverController: PopoverController) {
     const date = new Date();

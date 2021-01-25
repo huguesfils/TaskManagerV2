@@ -18,10 +18,10 @@ export class ConverterPage implements OnInit {
   ngOnInit() {
   }
 
-  switch(){
+  switch(){ // inutile mais comment faire ? 
   }
 
-  convert(){
+  convert(){  // si aucune données affiche NaN -> rajouter une condition ?
     if (this.inputKilometers === null) {
     this.resultat = this.inputMiles*1.6
     this.solution = "Le résultat est " + this.resultat + " Km/h."
