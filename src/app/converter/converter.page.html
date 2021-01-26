@@ -7,34 +7,25 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-<div class= "flex">
-  <ion-card>
-    <ion-item lines="none" >
-      <ion-label> km/h : </ion-label>
-        <ion-input [(ngModel)]="inputKilometers" id="inputKmh" type="number" clearInput="true"></ion-input>
-    </ion-item>
-</ion-card>
+<ion-content class="ion-padding">
 
 <ion-card>
-  <ion-item lines="none" >
-    <ion-label> Mph : </ion-label>
-      <ion-input [(ngModel)]="inputMiles" id="inputMph" type="number" clearInput="true"></ion-input>
-  </ion-item>
+    <ion-item lines="none" >
+      <ion-label [innerHtml]="kmToMiles ? 'km/h -> Mph' : 'Mph -> km/h'"></ion-label>
+        <ion-input [(ngModel)]="inputValue" type="number" clearInput="true" (keyup)="updateVal()"></ion-input>
+    </ion-item>
 </ion-card>
 
 <ion-button (click)="switch()" class="switchButton">
   Inverser
 </ion-button>
-</div>
 
 <ion-button (click)="convert()" expand="block" class="convertButton">
   Convertir
 </ion-button>
 
 <ion-label class= "resultat">
-  <ion-item lines="none" expand="block">
+  <ion-item lines="none" expand="block" [class.source-empty]="checkIsNan()">
     <ion-label>{{solution}}</ion-label>
   </ion-item>
 </ion-label>
