@@ -12,12 +12,8 @@ h5 { // date
   text-transform: capitalize;
 } 
 
-.background {
-  background-color: lightgray;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  padding: 1px;
+ion-content{
+  --background: lightgray;
 }
 
 .add-button {

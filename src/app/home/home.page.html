@@ -7,8 +7,6 @@
 </ion-header>
 
 <ion-content>
-  <div class="background">
-
     <h1><b>Aujourd'hui</b></h1>
     <h5>{{ currentDate }}</h5>
 
@@ -46,15 +44,6 @@
       </ion-item>
     </ion-card> 
 
-    <ion-button *ngIf="!addTask" (click)="showForm()" expand="block" class="add-button">
-      Ajouter une tâche
-    </ion-button>
-    
-    <ion-button *ngIf="addTask" (click)="showForm()" expand="block" class="add-button">
-      <ion-icon name="close" slot="start"></ion-icon>
-      Annuler
-    </ion-button>
-
     <ion-button (click)= 'showHelp()' class="help-button" slot="icon-only">
       <ion-icon name="help-circle-outline"></ion-icon>
     </ion-button>
@@ -66,6 +55,16 @@
     <ion-button routerLink= "/converter">
       Converter
     </ion-button>
-    
-  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+  <ion-title *ngIf="!addTask" (click)="showForm()" class="add-button" >
+    Ajouter une tâche
+  </ion-title>
+  
+  <ion-title *ngIf="addTask" (click)="showForm()" class="add-button">
+    Annuler
+  </ion-title>
+</ion-toolbar>
+</ion-footer>
