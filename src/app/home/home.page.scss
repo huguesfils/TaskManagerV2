@@ -1,44 +1,27 @@
+ion-content {
+  --background: lightgray;
+}
 h1 {
   color: black;
-  margin-left: 20px;
   font-size: 30px;
 }
 h5 { // date
   color: #443f3f;
-  margin-left: 20px;
-  margin-top: -7px;
   font-size: medium;
   margin-bottom: 15px;
   text-transform: capitalize;
 } 
 
-.background {
-  background-color: lightgray;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  padding: 1px;
-}
-
-.add-button {
-  --background: #0080ff;
-  position: absolute;
-  bottom: 5px;
-  width: 96%;
-  --color: #ffffff;
-  margin-left: 2%;
-}
-.help-button {
-  --background: lightgrey;
-  margin-right: 5px;
-  position: absolute;
-  top: 0px;
-  right: 0;
-  size: 100%;
-
-}
-
 ion-card {
-  margin-bottom: 0px;
-  margin-top: 6px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+ion-footer {
+  background: var(--ion-color-primary);
+
+  .add-button {
+    --background: #0080ff;
+    --color: #ffffff;
+  }
 }
