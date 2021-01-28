@@ -1,12 +1,10 @@
 
-
-.flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+ion-card {
+        margin-bottom: 0px;
+        margin-top: 6px;
 }
 
-ion-card {
-    width: 46%;
-    margin: 7px;
+
+.source-empty{
+    color: red;
 }
