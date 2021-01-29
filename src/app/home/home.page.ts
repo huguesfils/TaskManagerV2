@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFirestore, DocumentChangeAction} from '@angular/fire/firestore'
+import { Component } from '@angular/core'
+import { AngularFireDatabase } from '@angular/fire/database'
+import { AngularFirestore} from '@angular/fire/firestore'
 import { PopoverController } from '@ionic/angular';
-import { DetailsPage } from '../details/details.page';
-import {PopoverComponent} from '../popover/popover.component';
+import { DetailsPage } from '../details/details.page'
+import {PopoverComponent} from '../popover/popover.component'
+
+import {DatabaseService} from '../services/database.service'
 
 @Component({
   selector: 'app-home',
@@ -14,12 +16,16 @@ export class HomePage {
   currentDate: string;
   title: string;
   description: string;
-  addTask: boolean;
+  addingTask: boolean;
   tasks = [];
 
   detailsPage = DetailsPage;
 
-  constructor(private afFirestore: AngularFirestore, public afDB: AngularFireDatabase, public popoverController: PopoverController) {
+  constructor(
+    private databaseService: DatabaseService,
+    private afFirestore: AngularFirestore, 
+    public afDB: AngularFireDatabase, 
+    public popoverController: PopoverController) {
     const date = new Date();
     const options = { weekday: 'long', month: 'long', day: 'numeric' };
     this.currentDate = date.toLocaleDateString('fr-FR', options);
@@ -35,33 +41,23 @@ export class HomePage {
     return await popover.present();
   }
 
-  addTaskToFirestore() {
-    this.afFirestore.collection('tasks').add({
+  addTask() {
+    this.databaseService.addTask({
       title: this.title,
       description: this.description,
       date: new Date().toISOString(),
-    });
+    })
     this.showForm();
   }
   
   showForm() {
-    this.addTask = !this.addTask;
+    this.addingTask = !this.addingTask;
     this.title = '';
     this.description = '';
   }
 
-  getTasks() {
-    this.afDB.list('Tasks/').snapshotChanges(['child_added', 'child_removed']).subscribe(actions => {
-      this.tasks = [];
-      actions.forEach(action => {
-        this.tasks.push({
-          key: action.key,
-          title: action.payload.exportVal().title,
-          description: action.payload.exportVal().description,
-          date: action.payload.exportVal().date.substring(11, 16),
-        });
-      });
-    });
+  getTasks() { 
+    this.databaseService.getAllTasks()
   }
 
   deleteTask(task: any) {
