@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFirestore, DocumentChangeAction} from '@angular/fire/firestore'
 import { PopoverController } from '@ionic/angular';
 import { DetailsPage } from '../details/details.page';
 import {PopoverComponent} from '../popover/popover.component';
@@ -18,7 +19,7 @@ export class HomePage {
 
   detailsPage = DetailsPage;
 
-  constructor(public afDB: AngularFireDatabase, public popoverController: PopoverController) {
+  constructor(private afFirestore: AngularFirestore, public afDB: AngularFireDatabase, public popoverController: PopoverController) {
     const date = new Date();
     const options = { weekday: 'long', month: 'long', day: 'numeric' };
     this.currentDate = date.toLocaleDateString('fr-FR', options);
@@ -34,8 +35,8 @@ export class HomePage {
     return await popover.present();
   }
 
-  addTaskToFirebase() {
-    this.afDB.list('Tasks/').push({
+  addTaskToFirestore() {
+    this.afFirestore.collection('tasks').add({
       title: this.title,
       description: this.description,
       date: new Date().toISOString(),
