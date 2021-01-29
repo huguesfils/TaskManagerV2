@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
     <h1><b>Aujourd'hui</b></h1>
     <h5>{{ currentDate }}</h5>
 
@@ -62,12 +62,12 @@
 
 <ion-footer> <!-- probleme affichage petit format (iPhone 5) -->
   <ion-toolbar color="primary">
-  <ion-title *ngIf="!addTask" (click)="showForm()" class="add-button" >
+  <ion-button *ngIf="!addTask" (click)="showForm()" class="add-button" >
     Ajouter une tâche
-  </ion-title>
+  </ion-button>
   
-  <ion-title *ngIf="addTask" (click)="showForm()" class="add-button">
+  <ion-button *ngIf="addTask" (click)="showForm()" class="add-button">
     Annuler
-  </ion-title>
+  </ion-button>
 </ion-toolbar>
 </ion-footer>
