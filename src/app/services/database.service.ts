@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore} from '@angular/fire/firestore';
-import { Data } from '@angular/router';
+import { firestore } from 'firebase/app';
 
 
 
@@ -16,15 +16,30 @@ export class DatabaseService {
     return true
   }
 
-  getAllTasks(): Array<string>{
-  let tasks = []
-    this.afFirestore.collection('task').get().subscribe((snapshot) => {
-      snapshot.docs.forEach(tasks => {
-        tasks.data
-      });
+  getAllTasks(): Promise<Array<object>> {
+    // On créé une promesse car on va avoir besoin d’être insynchrone: on ne sait pas quand firestore nous renvois les données
+    return new Promise((resolve,reject) => {
+    // on cherche dans la collection tasks tous les documents. Cela retourne un query snapshot
+    this.afFirestore.collection('tasks').get().subscribe((snapshot: firestore.QuerySnapshot) => {
+    const tasks: Array<object> = []
+    // Si le snapshot n’est pas vide, il y a des documents
+    if (!snapshot.empty) {
+    // On lit les document les un après les autres
+    snapshot.forEach((doc: firestore.DocumentData) => {
+    // Doc -> est le document. .data() c’est pour récupérer le contenu
+    const task: object = doc.data()
+    // On ajoute l’id manuellement, car pratique
+    task['id'] = doc.id
+    // On l’ajoute dans l'array
+    tasks.push(task)
     })
-    return tasks
-  }
+    }
+    // On a finit, donc on retourne les taches
+    resolve(tasks)
+    })
+    })
+    }
+    
 /*
   this.afDB.list('Tasks/').snapshotChanges(['child_added', 'child_removed']).subscribe(actions => {
     this.tasks = [];
