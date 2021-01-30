@@ -62,11 +62,11 @@
 
 <ion-footer> <!-- probleme affichage petit format (iPhone 5) -->
   <ion-toolbar color="primary">
-  <ion-button *ngIf="!addTask" (click)="showForm()" class="add-button" >
+  <ion-button *ngIf="!addingTask" (click)="showForm()" class="add-button" >
     Ajouter une tâche
   </ion-button>
   
-  <ion-button *ngIf="addTask" (click)="showForm()" class="add-button">
+  <ion-button *ngIf="addingTask" (click)="showForm()" class="add-button">
     Annuler
   </ion-button>
 </ion-toolbar>
