@@ -17,7 +17,7 @@
       <ion-item-sliding>
       <ion-item lines="none">
         <ion-label text-wrap>
-          <h2><b>{{ task.title }}</b></h2>
+          <h2><b>{{ tasks }}</b></h2>
           <h3>{{ task.description }}</h3>
           <p>{{ task.date }} ID:{{ task.key}}</p>
         </ion-label>
@@ -60,7 +60,7 @@
     </ion-button>
 </ion-content>
 
-<ion-footer> <!-- probleme affichage petit format (iPhone 5) -->
+<ion-footer>
   <ion-toolbar color="primary">
   <ion-button *ngIf="!addingTask" (click)="showForm()" class="add-button" >
     Ajouter une tâche

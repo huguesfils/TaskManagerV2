@@ -1,6 +1,5 @@
 import { Component } from '@angular/core'
 import { AngularFireDatabase } from '@angular/fire/database'
-import { AngularFirestore} from '@angular/fire/firestore'
 import { PopoverController } from '@ionic/angular';
 import { DetailsPage } from '../details/details.page'
 import {PopoverComponent} from '../popover/popover.component'
@@ -17,19 +16,19 @@ export class HomePage {
   title: string;
   description: string;
   addingTask: boolean;
-  tasks = [];
+ 
 
   detailsPage = DetailsPage;
 
   constructor(
     private databaseService: DatabaseService,
-    private afFirestore: AngularFirestore, 
     public afDB: AngularFireDatabase, 
     public popoverController: PopoverController) {
     const date = new Date();
     const options = { weekday: 'long', month: 'long', day: 'numeric' };
     this.currentDate = date.toLocaleDateString('fr-FR', options);
     this.getTasks();
+    console.log("test getTask()")
   }
 
   async showHelp(ev: any) {
@@ -57,7 +56,7 @@ export class HomePage {
   }
 
   getTasks() { 
-    this.databaseService.getAllTasks()
+    this.databaseService.getAllTasks();
   }
 
   deleteTask(task: any) {

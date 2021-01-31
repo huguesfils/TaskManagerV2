@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore} from '@angular/fire/firestore';
-import { firestore } from 'firebase/app';
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +17,12 @@ export class DatabaseService {
     // On créé une promesse car on va avoir besoin d’être insynchrone: on ne sait pas quand firestore nous renvois les données
     return new Promise((resolve,reject) => {
     // on cherche dans la collection tasks tous les documents. Cela retourne un query snapshot
-    this.afFirestore.collection('tasks').get().subscribe((snapshot: firestore.QuerySnapshot) => {
+    this.afFirestore.collection('tasks').get().subscribe((snapshot: firebase.firestore.QuerySnapshot) => {
     const tasks: Array<object> = []
     // Si le snapshot n’est pas vide, il y a des documents
     if (!snapshot.empty) {
     // On lit les document les un après les autres
-    snapshot.forEach((doc: firestore.DocumentData) => {
+    snapshot.forEach((doc: firebase.firestore.DocumentData) => {
     // Doc -> est le document. .data() c’est pour récupérer le contenu
     const task: object = doc.data()
     // On ajoute l’id manuellement, car pratique
@@ -36,8 +33,9 @@ export class DatabaseService {
     }
     // On a finit, donc on retourne les taches
     resolve(tasks)
+    console.log('test2')
     })
-    })
+    });
     }
     
 /*

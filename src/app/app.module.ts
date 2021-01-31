@@ -28,8 +28,13 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule, AngularFirestoreModule],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule, 
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule, 
+    AngularFirestoreModule],
   providers: [
     StatusBar,
     SplashScreen,
